@@ -29,7 +29,7 @@ pipenv run python manage.py runserver
 
 # Start the server for production
 # Serve on localhost:5000
-pipenv run gunicorn --config gunicorn.py run:app
+pipenv run gunicorn --config gunicorn.py wsgi:app
 ```
 
 ## Get the python libraries:

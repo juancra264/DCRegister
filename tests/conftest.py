@@ -7,6 +7,7 @@ the_app = create_app(dict(
     LOGIN_DISABLED=False,  # Enable @register_required
     MAIL_SUPPRESS_SEND=True,  # Disable Flask-Mail send
     SERVER_NAME='127.0.0.1',  # Enable url_for() without request context
+    SESSION_COOKIE_DOMAIN = '127.0.0.1',
     SQLALCHEMY_DATABASE_URI='sqlite:///:memory:',  # In-memory SQLite DB
     WTF_CSRF_ENABLED=False,  # Disable CSRF form validation
 ))
