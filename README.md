@@ -31,3 +31,10 @@ pipenv run python manage.py runserver
 # Serve on localhost:5000
 pipenv run gunicorn --config gunicorn.py run:app
 ```
+
+## Get the python libraries:
+
+```bash
+# Export the python libraries:
+pipenv lock --requirements > requirements.txt
+```
