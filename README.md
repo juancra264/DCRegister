@@ -1,6 +1,6 @@
 |             | status |
 |-------------|------------|
-| **master** | [![Build Status](https://travis-ci.org/juancra264/DCRegister.svg?branch=master)](https://travis-ci.org/juancra264/DCRegister) 
+| **master** | [![Build Status](https://travis-ci.org/juancra264/DCRegister.svg?branch=master)](https://travis-ci.org/juancra264/DCRegister) [![Coverage Status](https://coveralls.io/repos/github/juancra264/DCRegister/badge.svg?branch=master)](https://coveralls.io/github/juancra264/DCRegister?branch=master) 
 
 
 # DCRegister - Web App
