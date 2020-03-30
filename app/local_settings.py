@@ -36,7 +36,7 @@ MAIL_PORT = 587
 MAIL_USE_SSL = False
 MAIL_USE_TLS = True
 MAIL_USERNAME = 'juancra264@gmail.com'
-MAIL_PASSWORD = 'Olga12345'
+MAIL_PASSWORD = '12345'
 MAIL_DEFAULT_SENDER = '"DC Register" <juancra264@gmail.com>'
 
 ADMINS = [
