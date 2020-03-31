@@ -19,6 +19,14 @@ def test_page_urls(client):
     response = client.get("/members/profile/", follow_redirects=False)
     assert response.status_code == 302
 
+    # Visit Regitro Ingreso
+    response = client.get(url_for('public.ingreso_page'), follow_redirects=True)
+    assert response.status_code == 200
+
+    # Visit Regitro Salida
+    response = client.get("/RegistroSalida", follow_redirects=True)
+    assert response.status_code == 200
+
 
 def test_admin_login(client):
     # Login as admin

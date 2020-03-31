@@ -5,7 +5,7 @@
 
 <form action="" method="POST" novalidate formnovalidate class="form" role="form">
   <div class="col-md-6">
-    {{ form.csrf_token() }}
+    {{ form.hidden_tag() }}
     {{ wtf.form_field(form.ClienteBT, class='form-control') }}
     {{ wtf.form_field(form.Fullname, class='form-control') }}
     {{ wtf.form_field(form.NumeroID, class='form-control') }}
