@@ -1,0 +1,15 @@
+{% extends "common/page_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<h1>{% trans %}Registro de Salida{% endtrans %}</h1>
+
+<form action="" method="POST" novalidate formnovalidate class="form" role="form">
+  <div class="col-md-6">
+    {{ form.csrf_token() }}
+    {{ wtf.form_field(form.Fullname, class='form-control') }}
+    {{ wtf.form_field(form.FechaSalida, class='form-control') }}
+    {{ wtf.form_field(form.HoraSalida, class='form-control') }}
+    {{ wtf.form_field(form.submit, class="btn btn-danger", button_map={'submit': 'primary'}) }}
+  </div>
+</form>
+{% endblock %}

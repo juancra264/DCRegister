@@ -1,0 +1,20 @@
+{% extends "common/page_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<h1>{% trans %}Registre sus datos{% endtrans %}</h1>
+
+<form action="" method="POST" novalidate formnovalidate class="form" role="form">
+  <div class="col-md-6">
+    {{ form.csrf_token() }}
+    {{ wtf.form_field(form.ClienteBT, class='form-control') }}
+    {{ wtf.form_field(form.Fullname, class='form-control') }}
+    {{ wtf.form_field(form.NumeroID, class='form-control') }}
+    {{ wtf.form_field(form.Actividad, class='form-control') }}
+    {{ wtf.form_field(form.IngresaMedios, class='form-control') }}
+    {{ wtf.form_field(form.Operador, class='form-control') }}
+    {{ wtf.form_field(form.FechaIngreso, class='form-control') }}
+    {{ wtf.form_field(form.HoraIngreso, class='form-control') }}
+    {{ wtf.form_field(form.submit, class="btn btn-success", button_map={'submit': 'primary'}) }}
+  </div>
+</form>
+{% endblock %}
