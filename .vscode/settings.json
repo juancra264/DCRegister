@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\611546065\\.virtualenvs\\userapp-Ki76H9pP\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\611546065\\.virtualenvs\\userapp-Ki76H9pP\\Scripts\\python.exe",
+    "python.formatting.provider": "autopep8"
 }
