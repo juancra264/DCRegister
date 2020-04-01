@@ -1,8 +1,9 @@
+from config import config_dict
 import pytest
 from app import create_app, db as the_db
 
 # Initialize the Flask-App with test-specific settings
-the_app = create_app(dict(
+the_app = create_app(config_dict['Development'], dict(
     TESTING=True,  # Propagate exceptions
     LOGIN_DISABLED=False,  # Enable @register_required
     MAIL_SUPPRESS_SEND=True,  # Disable Flask-Mail send

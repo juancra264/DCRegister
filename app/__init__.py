@@ -21,7 +21,7 @@ migrate = Migrate()
 babel = Babel()
 
 
-def create_app(extra_config_settings={}):
+def create_app(config, extra_config_settings={}):
     # Create a Flask applicaction.
 
     # Instantiate Flask
@@ -31,7 +31,8 @@ def create_app(extra_config_settings={}):
     # Load common settings from 'app/settings.py' file
     app.config.from_object('app.settings')
     # Load local settings from 'app/local_settings.py'
-    app.config.from_object('app.local_settings')
+    #app.config.from_object('app.local_settings')
+    app.config.from_object(config)
     # Load extra config settings from 'extra_config_settings' param
     app.config.update(extra_config_settings)
 
