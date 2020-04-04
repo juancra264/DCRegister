@@ -7,12 +7,22 @@ Use "python manage.py runserver --help" for additional runserver options.
 
 from flask_migrate import MigrateCommand
 from flask_script import Manager
+from os import environ
+from config import config_dict
 
 from app import create_app
 from app.commands import InitDbCommand
 
+
+get_config_mode = environ.get('CONFIG_MODE', 'Development')
+try:
+    config_mode = config_dict[get_config_mode.capitalize()]
+except KeyError:
+    exit('Error: Invalid GENTELELLA_CONFIG_MODE environment variable entry.')
+
+
 # Setup Flask-Script with command line commands
-manager = Manager(create_app)
+manager = Manager(create_app(config_mode))
 manager.add_command('db', MigrateCommand)
 manager.add_command('init_db', InitDbCommand)
 
