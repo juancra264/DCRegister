@@ -1,8 +1,7 @@
 # Python Heroku Deployment
-
 > Steps to create a postgres database and deply a Python app to Heroku
 
-### Install guinicorn locally
+### Install gunicorn locally
 ```
 pipenv install gunicorn
 or
@@ -12,9 +11,15 @@ pip install gunicorn
 ### Install Heroku CLI
 https://devcenter.heroku.com/articles/heroku-cli
 
+
+### Verifying your installation
+```
+heroku --version
+```
+
 ### Login via CLI
 ```
-heroku login
+heroku login -i
 ```
 
 ### Create app
@@ -52,9 +57,8 @@ pip freeze > requirements.txt
 touch runtime.txt
 
 # Add this
-python-3.7.2
+python-3.7.6
 ```
-
 ### Deploy with Git
 ```
 git init
@@ -70,6 +74,7 @@ heroku run python
 >>> db.create_all()
 >>>exit()
 ```
+
 ### Visit app
 ```
 heroku open
