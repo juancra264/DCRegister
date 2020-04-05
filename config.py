@@ -8,11 +8,11 @@ class Config(object):
     # DO NOT use Unsecure Secrets in production environments
     # Generate a safe one with:
     #    python -c "import os; print(repr(os.urandom(24)));"
-    SECRET_KEY = 'DO_NOT_use_Unsecure_Secrets_in_production_environments'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     COOKIE_SECURE = 'Secure'
     COOKIE_DURATION = timedelta(days=365)
     # SQLAlchemy settings
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///../app.sqlite'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False    # Avoids a SQLAlchemy Warning
     BABEL_TRANSLATION_DIRECTORIES = os.path.join(os.path.dirname(
         os.path.abspath(__file__)), 'app/translations/')
@@ -48,7 +48,6 @@ class ProductionConfig(Config):
     #    environ.get('DATABASE_PORT', 5432),
     #    environ.get('DATABASE_NAME', 'dcregister')
     #)
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 
 class DevelopmentConfig(Config):
