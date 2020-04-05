@@ -8,7 +8,7 @@ class Config(object):
     # DO NOT use Unsecure Secrets in production environments
     # Generate a safe one with:
     #    python -c "import os; print(repr(os.urandom(24)));"
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY', "Supermegasecurekey")
     COOKIE_SECURE = 'Secure'
     COOKIE_DURATION = timedelta(days=365)
     # SQLAlchemy settings
