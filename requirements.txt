@@ -5,7 +5,7 @@ attrs==19.3.0
 babel==2.8.0
 bcrypt==3.1.7
 blinker==1.4
-certifi==2019.11.28
+certifi==2020.4.5.1
 cffi==1.14.0
 chardet==3.0.4
 click==7.1.1
@@ -46,6 +46,7 @@ paramiko==2.7.1
 passlib==1.7.2
 pep8-naming==0.10.0
 pluggy==0.13.1
+psycopg2==2.8.4
 py==1.8.1
 pycodestyle==2.5.0
 pycparser==2.20

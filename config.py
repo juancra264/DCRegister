@@ -41,13 +41,14 @@ class ProductionConfig(Config):
     #REMEMBER_COOKIE_HTTPONLY = True
     #REMEMBER_COOKIE_DURATION = 3600
     # PostgreSQL database
-    SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
-        environ.get('DATABASE_USER', 'dcregister'),
-        environ.get('DATABASE_PASSWORD', 'DCregister2020'),
-        environ.get('DATABASE_HOST', '127.0.0.1'),
-        environ.get('DATABASE_PORT', 5432),
-        environ.get('DATABASE_NAME', 'dcregister')
-    )
+    #SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
+    #    environ.get('DATABASE_USER', 'dcregister'),
+    #    environ.get('DATABASE_PASSWORD', 'DCregister2020'),
+    #    environ.get('DATABASE_HOST', '127.0.0.1'),
+    #    environ.get('DATABASE_PORT', 5432),
+    #    environ.get('DATABASE_NAME', 'dcregister')
+    #)
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 
 class DevelopmentConfig(Config):
