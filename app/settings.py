@@ -8,6 +8,8 @@ APP_SYSTEM_ERROR_SUBJECT_LINE = APP_NAME + " system error"
 
 # Flask settings
 CSRF_ENABLED = True
+SERVER_NAME = 'dcregister.herokuapp.com',  # Enable url_for() without request context
+SESSION_COOKIE_DOMAIN = 'dcregister.herokuapp.com',  # Cookies config using IP for test
 
 # Flask-SQLAlchemy settings
 SQLALCHEMY_TRACK_MODIFICATIONS = False
