@@ -1,5 +1,5 @@
-from os import environ
 from sys import exit
+from os import environ
 from config import config_dict
 from app import create_app
 
