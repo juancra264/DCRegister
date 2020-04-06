@@ -44,13 +44,13 @@ class ProductionConfig(Config):
     # to ON in Google Accounts.
     # Change it in https://myaccount.google.com/security#connectedapps
     # (near the bottom).
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
+    MAIL_SERVER = 'smtp.mailtrap.io'
+    MAIL_PORT = 2525
     MAIL_USE_SSL = False
     MAIL_USE_TLS = True
-    MAIL_USERNAME = 'prueba....@gmail.com'
-    MAIL_PASSWORD = '12345'
-    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@gmail.com>'
+    MAIL_USERNAME = '9690900a53cb56'
+    MAIL_PASSWORD = 'ada7a9c3ecf8b6'
+    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@mailtrap.io>'
     ADMINS = [
         '"Admin One" <admin1@gmail.com>',
     ]
@@ -58,13 +58,7 @@ class ProductionConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    #SQLALCHEMY_DATABASE_URI = "sqlite:///../app.sqlite"
-    SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
-        'yyjgxprxibvsww',
-        'cea471d9627429b8a19f9c8fbd812680317133860fce9a5f2cbb8e2fa0c934d1',
-        'ec2-184-72-236-3.compute-1.amazonaws.com',
-        5432,
-        'dfpm0vlqikfrvn')
+    SQLALCHEMY_DATABASE_URI = "sqlite:///../app.sqlite"
     # Flask-Mail settings
     # For smtp.gmail.com to work, you MUST set "Allow less secure apps"
     # to ON in Google Accounts.
