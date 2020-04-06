@@ -59,13 +59,12 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     DEBUG = True
     #SQLALCHEMY_DATABASE_URI = "sqlite:///../app.sqlite"
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL',
-                                             'postgresql://{}:{}@{}:{}/{}'.format(
-                                                 'dcregister',
-                                                 'DCregister2020',
-                                                 '127.0.0.1',
-                                                 5432,
-                                                 'dcregister'))
+    SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
+        'yyjgxprxibvsww',
+        'cea471d9627429b8a19f9c8fbd812680317133860fce9a5f2cbb8e2fa0c934d1',
+        'ec2-184-72-236-3.compute-1.amazonaws.com',
+        5432,
+        'dfpm0vlqikfrvn')
     # Flask-Mail settings
     # For smtp.gmail.com to work, you MUST set "Allow less secure apps"
     # to ON in Google Accounts.
@@ -86,4 +85,6 @@ class DevelopmentConfig(Config):
 config_dict = {
     'Production': ProductionConfig,
     'Development': DevelopmentConfig
+
+
 }
