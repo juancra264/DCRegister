@@ -16,21 +16,6 @@ class Config(object):
     BABEL_TRANSLATION_DIRECTORIES = os.path.join(os.path.dirname(
         os.path.abspath(__file__)), 'app/translations/')
     BABEL_DEFAULT_LOCALE = 'es'
-    # Flask-Mail settings
-    # For smtp.gmail.com to work, you MUST set "Allow less secure apps"
-    # to ON in Google Accounts.
-    # Change it in https://myaccount.google.com/security#connectedapps
-    # (near the bottom).
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
-    MAIL_USE_SSL = False
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = 'juancra264@gmail.com'
-    MAIL_PASSWORD = '12345'
-    MAIL_DEFAULT_SENDER = '"DC Register" <juancra264@gmail.com>'
-    ADMINS = [
-        '"Admin One" <admin1@gmail.com>',
-    ]
 
 
 class ProductionConfig(Config):
@@ -54,11 +39,48 @@ class ProductionConfig(Config):
                                                  '127.0.0.1',
                                                  5432,
                                                  'dcregister'))
+    # Flask-Mail settings
+    # For smtp.gmail.com to work, you MUST set "Allow less secure apps"
+    # to ON in Google Accounts.
+    # Change it in https://myaccount.google.com/security#connectedapps
+    # (near the bottom).
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 587
+    MAIL_USE_SSL = False
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'prueba....@gmail.com'
+    MAIL_PASSWORD = '12345'
+    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@gmail.com>'
+    ADMINS = [
+        '"Admin One" <admin1@gmail.com>',
+    ]
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "sqlite:///../app.sqlite"
+    #SQLALCHEMY_DATABASE_URI = "sqlite:///../app.sqlite"
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL',
+                                             'postgresql://{}:{}@{}:{}/{}'.format(
+                                                 'dcregister',
+                                                 'DCregister2020',
+                                                 '127.0.0.1',
+                                                 5432,
+                                                 'dcregister'))
+    # Flask-Mail settings
+    # For smtp.gmail.com to work, you MUST set "Allow less secure apps"
+    # to ON in Google Accounts.
+    # Change it in https://myaccount.google.com/security#connectedapps
+    # (near the bottom).
+    MAIL_SERVER = 'smtp.mailtrap.io'
+    MAIL_PORT = 2525
+    MAIL_USE_SSL = False
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = '9690900a53cb56'
+    MAIL_PASSWORD = 'ada7a9c3ecf8b6'
+    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@mailtrap.io>'
+    ADMINS = [
+        '"Admin One" <admin1@gmail.com>',
+    ]
 
 
 config_dict = {
