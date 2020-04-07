@@ -2,9 +2,24 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 <h1>{% trans %}Registre sus datos{% endtrans %}</h1>
-
 <form action="" method="POST" novalidate formnovalidate class="form" role="form">
-  <div class="col-md-6">
+  <div class="col-md-12">
+    <p>Al registrar los datos: <br> * Doy constancia que me han informado, acepto y
+      entendí
+      las
+      políticas y procedimientos de acceso al Datacenter. <br> * Autorizo de manera voluntaria, previa, explícita,
+      informada
+      e
+      inequívoca a BT LATAM Colombia S.A para captar mis datos personales, tomar mi fotografía y material video gráfico
+      (CCTV) de acuerdo con su Política de Tratamiento de Datos Personales, para los fines relacionados con su objeto y
+      en
+      especial para fines legales, contractuales y misionales de BT. <br> * Doy Fe que la información la he suministrado
+      de
+      forma voluntaria y es verídica. <br> * BT garantizará la confidencialidad, libertad, seguridad, veracidad,
+      transparencia,
+      acceso y circulación restringida de los datos y se reservará el derecho de modificar su Política de Tratamiento de
+      Datos Personales en cualquier momento. Cualquier cambio será informado y publicado en lugares visibles del
+      Datacenter.</p>
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.ClienteBT, class='form-control') }}
     {{ wtf.form_field(form.Fullname, class='form-control') }}
