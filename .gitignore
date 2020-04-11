@@ -4,3 +4,4 @@ app.sqlite
 *.pyc
 env
 venv
+.vscode
