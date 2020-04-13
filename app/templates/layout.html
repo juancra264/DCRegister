@@ -2,6 +2,7 @@
 {% import "bootstrap/fixes.html" as fixes %} {% block head %} {{super()}}
 {{fixes.ie8()}} {% endblock %} {% block styles %} {{super()}}
 <link href="/static/css/global.css" rel="stylesheet" />
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% endblock %} {% block body %} {% block navbar %}
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
