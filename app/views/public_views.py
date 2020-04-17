@@ -26,8 +26,8 @@ def ingreso_page():
                              Actividad=form.Actividad.data,
                              IngresaMedios=form.IngresaMedios.data,
                              FechaHoraIngreso=datetime.now(),
-                             EnAreaBlanca=True,
-                             Operador=form.Operador.data
+                             EnAreaBlanca=False,
+                             Operador="Pendiente"
                              )
         db.session.add(visitor)
         db.session.commit()
@@ -38,10 +38,15 @@ def ingreso_page():
 @public_blueprint.route('/RegistroSalida', methods=['GET', 'POST'])
 def salida_page():
     form = VisitorExitForm()
+    form.Fullname.choices = [(g.id, g.Fullname) for g in Visitorlog.query.filter(
+        Visitorlog.EnAreaBlanca is True).order_by('Fullname')]
     if form.validate_on_submit():
-        flash('Salida registrada para el visitante {} a las \
-              {} del {}'.format(form.Fullname.data,
-                                form.HoraSalida.data,
-                                form.FechaSalida.data))
+        visitor = Visitorlog.query.filter(Visitorlog.id == form.Fullname.data).first()
+        visitor.EnAreaBlanca = False
+        visitor.FechaHoraSalida = datetime.now()
+        db.session.commit()
+        flash('Salida registrada para {} a las \
+              {}'.format(visitor.Fullname,
+                         datetime.now().strftime("%H:%M %Y-%m-%d")))
         return redirect(url_for('public.home_page'))
     return render_template('pages/salida_page.html', form=form)

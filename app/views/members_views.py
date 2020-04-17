@@ -41,8 +41,24 @@ def before_request():
 @members_blueprint.route('/members/')
 @login_required
 def member_page():
-    visitors = Visitorlog.query.all()
+    visitors = Visitorlog.query.filter(Visitorlog.Operador == 'Pendiente')
     return render_template('pages/user_page.html', visitors=visitors)
+
+
+@members_blueprint.route('/members/<string:id_data>', methods=['POST', 'GET'])
+@login_required
+def validate_page(id_data):
+    visitor = Visitorlog.query.filter_by(id=int(id_data)).first()
+    visitor.Operador = current_user.email
+    visitor.EnAreaBlanca = True
+    db.session.commit()
+    return redirect(url_for('members.member_page'))
+
+
+@members_blueprint.route('/members/reports')
+@login_required
+def reports_page():
+    return render_template('pages/reports_page.html')
 
 
 @members_blueprint.route('/members/profile/', methods=['GET', 'POST'])

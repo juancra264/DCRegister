@@ -1,7 +1,7 @@
 {% extends "common/page_base.html" %} {# common/page_base.html extends layout.html #}
 
 {% block content %}
-<h2>{%trans%}Members page{%endtrans%}</h2>
+<h2>{%trans%}Validaci&oacute;n Datos Ingreso Visitantes {%endtrans%}</h2>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -12,8 +12,6 @@
                 <th>Actividad</th>
                 <th>IngresaMedios</th>
                 <th>FechaHoraIngreso</th>
-                <th>EnAreaBlanca</th>
-                <th>FechaHoraSalida</th>
                 <th>Operador</th>
                 <th>Actions</th>
             </tr>
@@ -25,13 +23,17 @@
                 <td>{{row.Fullname}}</td>
                 <td>{{row.NumeroID}}</td>
                 <td>{{row.Actividad}}</td>
-                <td>{{row.IngresaMedios}}</td>
-                <td>{{row.FechaHoraIngreso}}</td>
-                <td>{{row.EnAreaBlanca}}</td>
-                <td>{{row.FechaHoraSalida}}</td>
+                <td>
+                    {% if row.IngresaMedios %}
+                    Si
+                    {% else %}
+                    No
+                    {% endif %}
+                </td>
+                <td>{{row.FechaHoraIngreso.strftime("%Y-%m-%d %H:%M")}}</td>
                 <td>{{row.Operador}}</td>
                 <td>
-                    <a href="#">Registar</a>
+                    <a href="/members/{{row.id}}" class="btn btn-success">Validar</a>
                 </td>
             </tr>
             {% endfor %}

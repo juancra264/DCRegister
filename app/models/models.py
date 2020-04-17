@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, TextAreaField, SubmitField
+from wtforms import StringField, BooleanField, TextAreaField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 from wtforms.fields.html5 import DateField, TimeField
 db = SQLAlchemy()
@@ -43,10 +43,9 @@ class VisitorEntranceForm(FlaskForm):
     NumeroID = StringField('Numero Identificacion', validators=[DataRequired()])
     Actividad = TextAreaField(u'Descripcion Actividad')
     IngresaMedios = BooleanField('Ingresa Medios')
-    Operador = StringField('Operador que Acompaña', validators=[DataRequired()])
     submit = SubmitField('Registrar Ingreso')
 
 
 class VisitorExitForm(FlaskForm):
-    Fullname = StringField('Nombre Completo', validators=[DataRequired()])
+    Fullname = SelectField(u'Fullname', coerce=int)
     submit = SubmitField('Registrar Salida')

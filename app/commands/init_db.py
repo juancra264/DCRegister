@@ -30,7 +30,7 @@ def create_users():
 
     # Add users
     find_or_create_user('admin@example.com', 'admin123', admin_role)
-    #find_or_create_user('member@example.com', 'Password1')
+    find_or_create_user('test@example.com', 'test123')
 
     # Save to DB
     db.session.commit()
