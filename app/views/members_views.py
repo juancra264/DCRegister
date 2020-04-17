@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask_user import current_user, login_required
 from app import db, babel
-from app.models.user_models import UserProfileForm
+from app.models.user_models import UserProfileForm, Visitorlog
 from flask import current_app as app
 import gettext
 
@@ -41,7 +41,8 @@ def before_request():
 @members_blueprint.route('/members/')
 @login_required
 def member_page():
-    return render_template('pages/user_page.html')
+    visitors = Visitorlog.query.all()
+    return render_template('pages/user_page.html', visitors=visitors)
 
 
 @members_blueprint.route('/members/profile/', methods=['GET', 'POST'])

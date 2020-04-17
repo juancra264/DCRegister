@@ -1,5 +1,41 @@
-{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+{% extends "common/page_base.html" %} {# common/page_base.html extends layout.html #}
 
 {% block content %}
-    <h2>{%trans%}Members page{%endtrans%}</h2>
+<h2>{%trans%}Members page{%endtrans%}</h2>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ClienteBT</th>
+                <th>Fullname</th>
+                <th>NumeroID</th>
+                <th>Actividad</th>
+                <th>IngresaMedios</th>
+                <th>FechaHoraIngreso</th>
+                <th>EnAreaBlanca</th>
+                <th>FechaHoraSalida</th>
+                <th>Operador</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in visitors%}
+            <tr>
+                <td>{{row.ClienteBT}}</td>
+                <td>{{row.Fullname}}</td>
+                <td>{{row.NumeroID}}</td>
+                <td>{{row.Actividad}}</td>
+                <td>{{row.IngresaMedios}}</td>
+                <td>{{row.FechaHoraIngreso}}</td>
+                <td>{{row.EnAreaBlanca}}</td>
+                <td>{{row.FechaHoraSalida}}</td>
+                <td>{{row.Operador}}</td>
+                <td>
+                    <a href="#">Registar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

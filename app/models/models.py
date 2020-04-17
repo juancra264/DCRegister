@@ -44,15 +44,9 @@ class VisitorEntranceForm(FlaskForm):
     Actividad = TextAreaField(u'Descripcion Actividad')
     IngresaMedios = BooleanField('Ingresa Medios')
     Operador = StringField('Operador que Acompaña', validators=[DataRequired()])
-    FechaIngreso = DateField('Fecha Ingreso', format='%Y-%m-%d',
-                              default=datetime.now())
-    HoraIngreso = TimeField('Hora Ingreso', default=datetime.now())
     submit = SubmitField('Registrar Ingreso')
 
 
 class VisitorExitForm(FlaskForm):
     Fullname = StringField('Nombre Completo', validators=[DataRequired()])
-    FechaSalida = DateField('Fecha Salida', format='%Y-%m-%d',
-                              default=datetime.now())
-    HoraSalida = TimeField('Hora Salida', default=datetime.now())
     submit = SubmitField('Registrar Salida')
