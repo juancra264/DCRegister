@@ -16,10 +16,6 @@ def home_page():
 def ingreso_page():
     form = VisitorEntranceForm()
     if form.validate_on_submit():
-        flash('Se registra ingreso de {} para el cliente {} \
-               {}'.format(form.Fullname.data,
-                          form.ClienteBT.data,
-                          datetime.now()))
         visitor = Visitorlog(ClienteBT=form.ClienteBT.data,
                              Fullname=form.Fullname.data,
                              NumeroID=form.NumeroID.data,
@@ -31,6 +27,10 @@ def ingreso_page():
                              )
         db.session.add(visitor)
         db.session.commit()
+        flash('Se registra ingreso de {} para el cliente {} \
+               a las {}'.format(form.Fullname.data,
+                                form.ClienteBT.data,
+                                datetime.now().strftime("%H:%M %Y-%m-%d")))
         return redirect(url_for('public.home_page'))
     return render_template('pages/ingreso_page.html', form=form)
 
@@ -38,8 +38,9 @@ def ingreso_page():
 @public_blueprint.route('/RegistroSalida', methods=['GET', 'POST'])
 def salida_page():
     form = VisitorExitForm()
-    form.Fullname.choices = [(g.id, g.Fullname) for g in Visitorlog.query.filter(
-        Visitorlog.EnAreaBlanca is True).order_by('Fullname')]
+    form.Fullname.choices = [(g.id, g.Fullname)
+                              for g in
+                              Visitorlog.query.filter_by(EnAreaBlanca=True).order_by('Fullname')]
     if form.validate_on_submit():
         visitor = Visitorlog.query.filter(Visitorlog.id == form.Fullname.data).first()
         visitor.EnAreaBlanca = False

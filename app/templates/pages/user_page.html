@@ -12,7 +12,6 @@
                 <th>Actividad</th>
                 <th>IngresaMedios</th>
                 <th>FechaHoraIngreso</th>
-                <th>Operador</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,9 +30,10 @@
                     {% endif %}
                 </td>
                 <td>{{row.FechaHoraIngreso.strftime("%Y-%m-%d %H:%M")}}</td>
-                <td>{{row.Operador}}</td>
                 <td>
                     <a href="/members/{{row.id}}" class="btn btn-success">Validar</a>
+                    <a href="#" class="btn btn-primary">Editar</a>
+                    <a href="#" class="btn btn-danger">Cancelar</a>
                 </td>
             </tr>
             {% endfor %}
