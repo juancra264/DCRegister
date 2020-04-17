@@ -7,8 +7,6 @@
   <div class="col-md-6">
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.Fullname, class='form-control') }}
-    {{ wtf.form_field(form.FechaSalida, class='form-control') }}
-    {{ wtf.form_field(form.HoraSalida, class='form-control') }}
     {{ wtf.form_field(form.submit, class="btn btn-danger", button_map={'submit': 'primary'}) }}
   </div>
 </form>

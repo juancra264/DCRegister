@@ -1,5 +1,8 @@
+from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash
+from app import db
 from app.models.models import VisitorEntranceForm, VisitorExitForm
+from app.models.user_models import Visitorlog
 
 public_blueprint = Blueprint('public', __name__, template_folder='templates')
 
@@ -13,11 +16,21 @@ def home_page():
 def ingreso_page():
     form = VisitorEntranceForm()
     if form.validate_on_submit():
-        flash('Se registra ingreso de {} para el cliente {} a las \
-              {} del {}'.format(form.Fullname.data,
+        visitor = Visitorlog(ClienteBT=form.ClienteBT.data,
+                             Fullname=form.Fullname.data,
+                             NumeroID=form.NumeroID.data,
+                             Actividad=form.Actividad.data,
+                             IngresaMedios=form.IngresaMedios.data,
+                             FechaHoraIngreso=datetime.now(),
+                             EnAreaBlanca=False,
+                             Operador="Pendiente"
+                             )
+        db.session.add(visitor)
+        db.session.commit()
+        flash('Se registra ingreso de {} para el cliente {} \
+               a las {}'.format(form.Fullname.data,
                                 form.ClienteBT.data,
-                                form.HoraIngreso.data,
-                                form.FechaIngreso.data))
+                                datetime.now().strftime("%H:%M %Y-%m-%d")))
         return redirect(url_for('public.home_page'))
     return render_template('pages/ingreso_page.html', form=form)
 
@@ -25,10 +38,16 @@ def ingreso_page():
 @public_blueprint.route('/RegistroSalida', methods=['GET', 'POST'])
 def salida_page():
     form = VisitorExitForm()
+    form.Fullname.choices = [(g.id, g.Fullname)
+                              for g in
+                              Visitorlog.query.filter_by(EnAreaBlanca=True).order_by('Fullname')]
     if form.validate_on_submit():
-        flash('Salida registrada para el visitante {} a las \
-              {} del {}'.format(form.Fullname.data,
-                                form.HoraSalida.data,
-                                form.FechaSalida.data))
+        visitor = Visitorlog.query.filter(Visitorlog.id == form.Fullname.data).first()
+        visitor.EnAreaBlanca = False
+        visitor.FechaHoraSalida = datetime.now()
+        db.session.commit()
+        flash('Salida registrada para {} a las \
+              {}'.format(visitor.Fullname,
+                         datetime.now().strftime("%H:%M %Y-%m-%d")))
         return redirect(url_for('public.home_page'))
     return render_template('pages/salida_page.html', form=form)

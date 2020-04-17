@@ -56,3 +56,16 @@ class MyRegisterForm(RegisterForm):
 
 class UserProfileForm(FlaskForm):
     pass
+
+
+class Visitorlog(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    ClienteBT = db.Column(db.String(50), nullable=False)
+    Fullname = db.Column(db.String(150), nullable=False)
+    NumeroID = db.Column(db.String(20), nullable=False)
+    Actividad = db.Column(db.Unicode(255), server_default=u'')
+    IngresaMedios = db.Column(db.Boolean)
+    FechaHoraIngreso = db.Column(db.DateTime)
+    EnAreaBlanca = db.Column(db.Boolean)
+    FechaHoraSalida = db.Column(db.DateTime)
+    Operador = db.Column(db.String(150), nullable=False)
