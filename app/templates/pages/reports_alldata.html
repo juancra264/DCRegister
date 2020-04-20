@@ -1,6 +1,7 @@
 {% extends "common/page_base.html" %} {# common/page_base.html extends layout.html #}
+
 {% block content %}
-<h2>{%trans%}Validaci&oacute;n Datos Ingreso Visitantes {%endtrans%}</h2>
+<h2>{%trans%}Todos los registros de Ingreso Visitantes {%endtrans%}</h2>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -11,7 +12,9 @@
                 <th>Actividad</th>
                 <th>IngresaMedios</th>
                 <th>FechaHoraIngreso</th>
-                <th>Actions</th>
+                <th>EnAreaBlanca</th>
+                <th>FechaHoraSalida</th>
+                <th>Operador</th>
             </tr>
         </thead>
         <tbody>
@@ -30,10 +33,14 @@
                 </td>
                 <td>{{row.FechaHoraIngreso.strftime("%Y-%m-%d %H:%M")}}</td>
                 <td>
-                    <a href="/members/validar/{{row.id}}" class="btn btn-success">Validar</a>
-                    <a href="/members/editar/{{row.id}}" class="btn btn-primary">Editar</a>
-                    <a href="/members/cancelar/{{row.id}}" class="btn btn-danger">Cancelar</a>
+                    {% if row.EnAreaBlanca %}
+                    Si
+                    {% else %}
+                    No
+                    {% endif %}
                 </td>
+                <td>{{row.FechaHoraSalida.strftime("%Y-%m-%d %H:%M")}}</td>
+                <td>{{row.Operador}}</td>
             </tr>
             {% endfor %}
         </tbody>

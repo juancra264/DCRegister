@@ -46,6 +46,15 @@ class VisitorEntranceForm(FlaskForm):
     submit = SubmitField('Registrar Ingreso')
 
 
+class EditVisitorEntranceForm(FlaskForm):
+    ClienteBT = StringField('Cliente BT', validators=[DataRequired()])
+    Fullname = StringField('Nombre Completo', validators=[DataRequired()])
+    NumeroID = StringField('Numero Identificacion', validators=[DataRequired()])
+    Actividad = TextAreaField(u'Descripcion Actividad')
+    IngresaMedios = BooleanField('Ingresa Medios')
+    submit = SubmitField('Guardar Cambios')
+
+
 class VisitorExitForm(FlaskForm):
     Fullname = SelectField(u'Fullname', coerce=int)
     submit = SubmitField('Registrar Salida')

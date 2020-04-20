@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask_user import current_user, login_required
 from app import db, babel
+from app.models.models import EditVisitorEntranceForm
 from app.models.user_models import UserProfileForm, Visitorlog
 from flask import current_app as app
 import gettext
@@ -45,7 +46,7 @@ def member_page():
     return render_template('pages/user_page.html', visitors=visitors)
 
 
-@members_blueprint.route('/members/<string:id_data>', methods=['POST', 'GET'])
+@members_blueprint.route('/members/validar/<string:id_data>', methods=['POST', 'GET'])
 @login_required
 def validate_page(id_data):
     visitor = Visitorlog.query.filter_by(id=int(id_data)).first()
@@ -55,10 +56,46 @@ def validate_page(id_data):
     return redirect(url_for('members.member_page'))
 
 
+@members_blueprint.route('/members/editar/<string:id_data>', methods=['POST', 'GET'])
+@login_required
+def edit_page(id_data):
+    visitor = Visitorlog.query.filter_by(id=int(id_data)).first()
+    form = EditVisitorEntranceForm(ClienteBT=visitor.ClienteBT,
+                                   Fullname=visitor.Fullname,
+                                   NumeroID=visitor.NumeroID,
+                                   Actividad=visitor.Actividad,
+                                   IngresaMedios=visitor.IngresaMedios)
+    if request.method == 'POST' and form.validate():
+        visitor.ClienteBT = form.ClienteBT.data
+        visitor.Fullname = form.Fullname.data
+        visitor.NumeroID = form.NumeroID.data
+        visitor.Actividad = form.Actividad.data
+        visitor.IngresaMedios = form.IngresaMedios.data
+        db.session.commit()
+        return redirect(url_for('members.member_page'))
+    return render_template('pages/edit_ingreso_page.html', form=form)
+
+
+@members_blueprint.route('/members/cancelar/<string:id_data>', methods=['POST', 'GET'])
+@login_required
+def cancel_page(id_data):
+    visitor = Visitorlog.query.filter_by(id=int(id_data)).first()
+    db.session.delete(visitor)
+    db.session.commit()
+    return redirect(url_for('members.member_page'))
+
+
 @members_blueprint.route('/members/reports')
 @login_required
 def reports_page():
     return render_template('pages/reports_page.html')
+
+
+@members_blueprint.route('/members/reports/alldata')
+@login_required
+def reports_all_page():
+    visitors = Visitorlog.query.all()
+    return render_template('pages/reports_alldata.html', visitors=visitors)
 
 
 @members_blueprint.route('/members/profile/', methods=['GET', 'POST'])
