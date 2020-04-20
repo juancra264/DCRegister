@@ -39,7 +39,13 @@
                     No
                     {% endif %}
                 </td>
-                <td>{{row.FechaHoraSalida.strftime("%Y-%m-%d %H:%M")}}</td>
+                <td>
+                    {% if row.FechaHoraSalida != None %}
+                    {{row.FechaHoraSalida.strftime("%Y-%m-%d %H:%M")}}
+                    {% else %}
+                    Pendiente
+                    {% endif %}
+                </td>
                 <td>{{row.Operador}}</td>
             </tr>
             {% endfor %}
