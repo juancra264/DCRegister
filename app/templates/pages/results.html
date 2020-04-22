@@ -1,0 +1,55 @@
+{% extends "common/page_base.html" %} {# common/page_base.html extends layout.html #}
+
+{% block content %}
+<h2>{%trans%}Resultados {{consulta}}{%endtrans%}</h2>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ClienteBT</th>
+                <th>Fullname</th>
+                <th>NumeroID</th>
+                <th>Actividad</th>
+                <th>IngresaMedios</th>
+                <th>FechaHoraIngreso</th>
+                <th>EnAreaBlanca</th>
+                <th>FechaHoraSalida</th>
+                <th>Operador</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in visitors%}
+            <tr>
+                <td>{{row.ClienteBT}}</td>
+                <td>{{row.Fullname}}</td>
+                <td>{{row.NumeroID}}</td>
+                <td>{{row.Actividad}}</td>
+                <td>
+                    {% if row.IngresaMedios %}
+                    Si
+                    {% else %}
+                    No
+                    {% endif %}
+                </td>
+                <td>{{row.FechaHoraIngreso.strftime("%Y-%m-%d %H:%M")}}</td>
+                <td>
+                    {% if row.EnAreaBlanca %}
+                    Si
+                    {% else %}
+                    No
+                    {% endif %}
+                </td>
+                <td>
+                    {% if row.FechaHoraSalida != None %}
+                    {{row.FechaHoraSalida.strftime("%Y-%m-%d %H:%M")}}
+                    {% else %}
+                    Pendiente
+                    {% endif %}
+                </td>
+                <td>{{row.Operador}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
