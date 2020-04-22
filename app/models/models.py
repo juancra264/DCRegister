@@ -58,3 +58,26 @@ class EditVisitorEntranceForm(FlaskForm):
 class VisitorExitForm(FlaskForm):
     Fullname = SelectField(u'Fullname', coerce=int)
     submit = SubmitField('Registrar Salida')
+
+
+class QueryByIdForm(FlaskForm):
+    today_date = datetime.today().date()
+    first_day_of_month = today_date.replace(day=1)
+    NumeroID = StringField('Numero Identificacion', validators=[DataRequired()])
+    FechaFin = DateField('Fecha Fin', id='datepick',
+                            default=today_date)
+    FechaInicio = DateField('Fecha Inicio', id='datepick',
+                            default=first_day_of_month)
+    submit = SubmitField('Consultar')
+
+
+class QueryByCustomerForm(FlaskForm):
+    today_date = datetime.today().date()
+    first_day_of_month = today_date.replace(day=1)
+    #ClienteBT = StringField('Cliente BT', validators=[DataRequired()])
+    ClienteBT = SelectField(u'Cliente BT', coerce=int)
+    FechaFin = DateField('Fecha Fin', id='datepick',
+                            default=today_date)
+    FechaInicio = DateField('Fecha Inicio', id='datepick',
+                            default=first_day_of_month)
+    submit = SubmitField('Consultar')

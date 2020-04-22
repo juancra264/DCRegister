@@ -1,7 +1,8 @@
+from datetime import datetime, timedelta
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask_user import current_user, login_required
 from app import db, babel
-from app.models.models import EditVisitorEntranceForm
+from app.models.models import EditVisitorEntranceForm, QueryByIdForm, QueryByCustomerForm
 from app.models.user_models import UserProfileForm, Visitorlog
 from flask import current_app as app
 import gettext
@@ -96,6 +97,44 @@ def reports_page():
 def reports_all_page():
     visitors = Visitorlog.query.all()
     return render_template('pages/reports_alldata.html', visitors=visitors)
+
+
+@members_blueprint.route('/members/reports/byID', methods=['POST', 'GET'])
+@login_required
+def reports_byid_page():
+    form = QueryByIdForm()
+    if request.method == 'POST' and form.validate():
+        hoy = datetime.strptime(str(form.FechaFin.data), "%Y-%m-%d")
+        hoy = hoy + timedelta(hours=23, minutes=55, seconds=59, microseconds=999999)
+        visitors = Visitorlog.query.filter(Visitorlog.NumeroID == form.NumeroID.data). \
+            filter(Visitorlog.FechaHoraIngreso < hoy,
+                   Visitorlog.FechaHoraIngreso >= form.FechaInicio.data). \
+            order_by(Visitorlog.FechaHoraIngreso.desc()).all()
+        return render_template('pages/results.html', visitors=visitors,
+                               consulta="por Identificación")
+    return render_template('pages/reports_byID.html', form=form)
+
+
+@members_blueprint.route('/members/reports/byCustomer', methods=['POST', 'GET'])
+@login_required
+def reports_bycustomer_page():
+    i = 0
+    form = QueryByCustomerForm()
+    clientes = list(set([g.ClienteBT for g in Visitorlog.query.all()]))
+    choices = []
+    for x in clientes:
+        choices.append((i, x))
+    form.ClienteBT.choices = choices
+    if request.method == 'POST' and form.validate():
+        hoy = datetime.strptime(str(form.FechaFin.data), "%Y-%m-%d")
+        hoy = hoy + timedelta(hours=23, minutes=55, seconds=59, microseconds=999999)
+        visitors = Visitorlog.query.filter(Visitorlog.ClienteBT == clientes[form.ClienteBT.data]). \
+            filter(Visitorlog.FechaHoraIngreso < hoy,
+                   Visitorlog.FechaHoraIngreso >= form.FechaInicio.data). \
+            order_by(Visitorlog.FechaHoraIngreso.desc()).all()
+        return render_template('pages/results.html', visitors=visitors,
+                               consulta="por Cliente")
+    return render_template('pages/reports_byCustomer.html', form=form)
 
 
 @members_blueprint.route('/members/profile/', methods=['GET', 'POST'])
