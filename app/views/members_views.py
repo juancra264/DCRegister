@@ -111,7 +111,8 @@ def reports_byid_page():
                    Visitorlog.FechaHoraIngreso >= form.FechaInicio.data). \
             order_by(Visitorlog.FechaHoraIngreso.desc()).all()
         return render_template('pages/results.html', visitors=visitors,
-                               consulta="por Identificación")
+                               consulta="por Identificación",
+                               title="DC Register - Filtro Por Cedula")
     return render_template('pages/reports_byID.html', form=form)
 
 
@@ -128,12 +129,14 @@ def reports_bycustomer_page():
     if request.method == 'POST' and form.validate():
         hoy = datetime.strptime(str(form.FechaFin.data), "%Y-%m-%d")
         hoy = hoy + timedelta(hours=23, minutes=55, seconds=59, microseconds=999999)
-        visitors = Visitorlog.query.filter(Visitorlog.ClienteBT == clientes[form.ClienteBT.data]). \
+        cliente = clientes[form.ClienteBT.data]
+        visitors = Visitorlog.query.filter(Visitorlog.ClienteBT == cliente). \
             filter(Visitorlog.FechaHoraIngreso < hoy,
                    Visitorlog.FechaHoraIngreso >= form.FechaInicio.data). \
             order_by(Visitorlog.FechaHoraIngreso.desc()).all()
         return render_template('pages/results.html', visitors=visitors,
-                               consulta="por Cliente")
+                               consulta="por Cliente",
+                               title="DC Register - " + cliente)
     return render_template('pages/reports_byCustomer.html', form=form)
 
 
