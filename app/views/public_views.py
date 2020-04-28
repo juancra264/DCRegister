@@ -23,7 +23,8 @@ def ingreso_page():
                              IngresaMedios=form.IngresaMedios.data,
                              FechaHoraIngreso=datetime.now(),
                              EnAreaBlanca=False,
-                             Operador="Pendiente"
+                             Operador="Pendiente",
+                             Signature=str.encode(form.image.data)
                              )
         db.session.add(visitor)
         db.session.commit()

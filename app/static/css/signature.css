@@ -1,0 +1,14 @@
+canvas {
+    position: relative;
+    margin: 1px;
+    margin-left: 0px;
+    border: 1px solid #3a87ad;
+}
+
+#controlPanel {
+    margin: 2px;
+}
+
+#saveSignature {
+    display: none;
+}
