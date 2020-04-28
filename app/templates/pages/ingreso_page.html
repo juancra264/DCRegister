@@ -1,8 +1,13 @@
 {% extends "common/page_base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% block head %}
+{{ super() }}
+<script src=" {{ url_for('static', filename='js/signature.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signature.css') }}" />
+{% endblock %}
 {% block content %}
 <h1>{% trans %}Registre sus datos{% endtrans %}</h1>
-<form action="" method="POST" novalidate formnovalidate class="form" role="form">
+<form id="ingreso" action="" method="POST" novalidate formnovalidate class="form" role="form">
   <div class="col-md-12">
     <p>Al registrar los datos: <br> * Doy constancia que me han informado, acepto y
       entendí
@@ -26,7 +31,20 @@
     {{ wtf.form_field(form.NumeroID, class='form-control') }}
     {{ wtf.form_field(form.Actividad, class='form-control') }}
     {{ wtf.form_field(form.IngresaMedios, class='form-control') }}
-    {{ wtf.form_field(form.submit, class="btn btn-success", button_map={'submit': 'primary'}) }}
+    <div id="canvas">
+      Canvas is not supported.
+    </div>
+    <script>
+      zkSignature.capture();
+    </script>
+    <!--{{ wtf.form_field(form.submit, class="btn btn-success", button_map={'submit': 'primary'}) }} -->
+    <button type="button" class="btn btn-success" onclick="zkSignature.save()">
+      Registrar
+    </button>
+    <!--<input type='hidden' name='imagen' id='imagen' /> -->
+    <button type="button" class="btn btn-primary" onclick="zkSignature.clear()">
+      Repetir Firma
+    </button>
   </div>
 </form>
 {% endblock %}

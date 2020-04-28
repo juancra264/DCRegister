@@ -15,6 +15,7 @@
                 <th>EnAreaBlanca</th>
                 <th>FechaHoraSalida</th>
                 <th>Operador</th>
+                <th>Firma</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
                     {% endif %}
                 </td>
                 <td>{{row.Operador}}</td>
+                <td><img src="{{row.Signature.decode()}}"></td>
             </tr>
             {% endfor %}
         </tbody>

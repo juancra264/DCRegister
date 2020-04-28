@@ -69,3 +69,4 @@ class Visitorlog(db.Model):
     EnAreaBlanca = db.Column(db.Boolean)
     FechaHoraSalida = db.Column(db.DateTime)
     Operador = db.Column(db.String(150), nullable=False)
+    Signature = db.Column(db.LargeBinary)
