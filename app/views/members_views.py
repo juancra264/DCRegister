@@ -125,6 +125,7 @@ def reports_bycustomer_page():
     choices = []
     for x in clientes:
         choices.append((i, x))
+        i = i + 1
     form.ClienteBT.choices = choices
     if request.method == 'POST' and form.validate():
         hoy = datetime.strptime(str(form.FechaFin.data), "%Y-%m-%d")
