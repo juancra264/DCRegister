@@ -41,3 +41,29 @@ def test_admin_login(client):
     # Logout
     response = client.get("/user/sign-out", follow_redirects=True)
     assert response.status_code == 200
+
+
+def test_testuser_login(client):
+    # Login as admin
+    response = client.post(url_for('user.login'), follow_redirects=True,
+                           data=dict(email='test@example.com',
+                                     password='test123'))
+    assert response.status_code == 200
+    # Visit Reports Page
+    response = client.get("/members/reports", follow_redirects=False)
+    assert response.status_code == 200
+    # Visit Reports Page
+    response = client.get("/members/reports/alldata", follow_redirects=False)
+    assert response.status_code == 200
+    # Visit Reports By ID
+    response = client.get("/members/reports/byID", follow_redirects=False)
+    assert response.status_code == 200
+    # Visit Reports By Customer
+    response = client.get("/members/reports/byCustomer", follow_redirects=False)
+    assert response.status_code == 200
+    # Visit User Profile
+    response = client.get("/members/profile", follow_redirects=True)
+    assert response.status_code == 200
+    # Logout
+    response = client.get("/user/sign-out", follow_redirects=True)
+    assert response.status_code == 200

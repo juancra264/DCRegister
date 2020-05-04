@@ -1,34 +1,3 @@
-/*************************************************
-
- Signsend - The signature capture webapp sample using HTML5 Canvas
-
- Author: Jack Wong <jack.wong@zetakey.com>
- Copyright (c): 2014 Zetakey Solutions Limited, all rights reserved
-
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
- You may contact the author of Jack Wong by e-mail at:
- jack.wong@zetakey.com
-
- The latest version can obtained from:
- https://github.com/jackccwong/signsend
-
- The live demo is located at:
- http://apps.zetakey.com/signsend
-
- **************************************************/
 var zkSignature = (function () {
 
     var empty = true;
@@ -50,15 +19,15 @@ var zkSignature = (function () {
                 throw new Error("Failed to get canvas' 2d context");
             }
 
-            screenwidth = screen.width;
-
-            if (screenwidth < 100) {
-                canvas.width = screenwidth - 8;
-                canvas.height = (screenwidth * 0.63);
+            /*screenwidth = screen.width;
+            if (screenwidth < 480) {
+                canvas.width = screenwidth - 35;
             } else {
-                canvas.width = 200;
-                canvas.height = 100;
-            }
+                // original 464 x 304
+                canvas.width = 250;
+            }*/
+            canvas.width = 250;
+            canvas.height = 100;
 
             context.fillStyle = "#fff";
             context.strokeStyle = "#444";
@@ -189,13 +158,11 @@ var zkSignature = (function () {
         }
         ,
         clear: function () {
-
             var parent = document.getElementById("canvas");
             var child = document.getElementById("newSignature");
             parent.removeChild(child);
             empty = true;
             this.capture();
-
         }
         ,
         send: function () {

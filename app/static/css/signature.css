@@ -1,3 +1,8 @@
+#wrapper {
+    width: 100%;
+    padding: 1px;
+}
+
 canvas {
     position: relative;
     margin: 1px;
