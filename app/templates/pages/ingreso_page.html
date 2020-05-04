@@ -8,7 +8,7 @@
 {% block content %}
 <h1>{% trans %}Registre sus datos{% endtrans %}</h1>
 <form id="ingreso" action="" method="POST" novalidate formnovalidate class="form" role="form">
-  <div class="col-md-12">
+  <div id="wrapper">
     <p>Al registrar los datos: <br> * Doy constancia que me han informado, acepto y
       entendí
       las
@@ -34,16 +34,13 @@
     <div id="canvas">
       Canvas is not supported.
     </div>
-    <script>
-      zkSignature.capture();
-    </script>
+    <script>zkSignature.capture();</script>
     <!--{{ wtf.form_field(form.submit, class="btn btn-success", button_map={'submit': 'primary'}) }} -->
     <button type="button" class="btn btn-success" onclick="zkSignature.save()">
       Registrar
     </button>
-    <!--<input type='hidden' name='imagen' id='imagen' /> -->
     <button type="button" class="btn btn-primary" onclick="zkSignature.clear()">
-      Repetir Firma
+      Borrar Firma
     </button>
   </div>
 </form>

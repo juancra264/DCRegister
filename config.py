@@ -44,15 +44,15 @@ class ProductionConfig(Config):
     # to ON in Google Accounts.
     # Change it in https://myaccount.google.com/security#connectedapps
     # (near the bottom).
-    MAIL_SERVER = 'smtp.mailtrap.io'
-    MAIL_PORT = 2525
+    MAIL_SERVER = 'in-v3.mailjet.com'
+    MAIL_PORT = 587
     MAIL_USE_SSL = False
     MAIL_USE_TLS = True
-    MAIL_USERNAME = '9690900a53cb56'
-    MAIL_PASSWORD = 'ada7a9c3ecf8b6'
-    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@mailtrap.io>'
+    MAIL_USERNAME = 'bf1af97b8aa2793bf9d21905083b2761'
+    MAIL_PASSWORD = '1c91b4c28e61b6d58b9764171509867a'
+    MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@example.com>'
     ADMINS = [
-        '"Admin One" <admin1@gmail.com>',
+        '"Admin One" <juancra264@hotmail.com>',
     ]
 
 
@@ -72,13 +72,11 @@ class DevelopmentConfig(Config):
     MAIL_PASSWORD = 'ada7a9c3ecf8b6'
     MAIL_DEFAULT_SENDER = '"DC Register" <no-reply@mailtrap.io>'
     ADMINS = [
-        '"Admin One" <admin1@gmail.com>',
+        '"Admin One" <juancra264@hotmail.com>',
     ]
 
 
 config_dict = {
     'Production': ProductionConfig,
     'Development': DevelopmentConfig
-
-
 }
